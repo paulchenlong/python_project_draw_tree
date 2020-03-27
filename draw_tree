@@ -1,0 +1,49 @@
+""""
+    作者:陈龙
+    功能:绘制分形树
+    版本:v1.0
+    日期:04/10/2019
+"""
+
+import turtle
+
+
+
+def  draw_branch (size, angle):
+    if size >= 5:
+        turtle.forward(size)
+        print('向前 ', size)
+        turtle.right(angle)
+        print('右转', angle)
+        draw_branch(size - 10, angle)
+
+        # 绘制左侧树枝
+        turtle.left(2 * angle)
+        print('左转', 2 * angle)
+        draw_branch(size - 10, angle)
+
+        # 返回之前的树枝
+        turtle.right(angle)
+        print('右转', angle)
+        turtle.backward(size)
+        print('向后 ', size)
+
+
+def main():
+    # 定义树枝绘制的起始位置
+    turtle.left(90)
+    turtle.penup()
+    turtle.backward(200)
+    turtle.pendown()
+    # 定义树枝的颜色和粗细
+    turtle.color('blue')
+    turtle.pensize(2)
+
+    # 定义绘制长度
+    size = 100
+    angle = 20
+    draw_branch(size, angle)
+    turtle.exitonclick()
+
+if __name__ == '__main__':
+    main()
